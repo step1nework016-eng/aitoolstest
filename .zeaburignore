@@ -1,0 +1,13 @@
+# Zeabur 忽略檔案
+# 確保不會誤判服務類型
+
+# 忽略 PHP 相關檔案（如果有的話）
+*.php
+composer.json
+composer.lock
+
+# 忽略開發檔案
+node_modules
+.git
+.env.local
+.env.development
