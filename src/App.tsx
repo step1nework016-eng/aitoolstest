@@ -150,7 +150,6 @@ const AppLauncherDemo: React.FC = () => {
   const [favorites, setFavorites] = React.useState<string[]>([]);
   const [keyword, setKeyword] = React.useState<string>("");
   const [sidebarOpen, setSidebarOpen] = React.useState<boolean>(false);
-  const [theme, setTheme] = React.useState<"light" | "dark">("light");
   const [activeTag, setActiveTag] = React.useState<string | null>(null);
   const [toast, setToast] = React.useState<string | null>(null);
   const toastTimeoutRef = React.useRef<number | null>(null);
@@ -207,7 +206,7 @@ const AppLauncherDemo: React.FC = () => {
     }
   }, [isAdmin]);
 
-  const isDark = theme === "dark";
+  const isDark = false; // 固定使用淺色模式
 
   /** ====== 初始化：收藏/主題、本機清理、載 catalog、Admin 登入/登出 ====== */
   React.useEffect(() => {
@@ -217,10 +216,6 @@ const AppLauncherDemo: React.FC = () => {
       if (rawFav) {
         const parsed = JSON.parse(rawFav);
         if (Array.isArray(parsed)) setFavorites(parsed);
-      }
-      const storedTheme = localStorage.getItem("aijob-theme");
-      if (storedTheme === "light" || storedTheme === "dark") {
-        setTheme(storedTheme as "light" | "dark");
       }
     } catch {}
 
@@ -366,10 +361,6 @@ const AppLauncherDemo: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /** ====== 主題變更儲存 ====== */
-  React.useEffect(() => {
-    try { localStorage.setItem("aijob-theme", theme); } catch {}
-  }, [theme]);
 
   /** ====== 只用公開 catalog ====== */
   const apps: App[] = React.useMemo(() => catalog.apps, [catalog.apps]);
@@ -608,9 +599,6 @@ const AppLauncherDemo: React.FC = () => {
         isDark ? "bg-slate-900/90 border-slate-800 text-slate-100" : "bg-white/90 border-slate-200 text-slate-800 backdrop-blur-sm"}`}>
         <button onClick={() => setSidebarOpen(true)} className="text-xl">☰</button>
         <span className="font-semibold text-sm">AIJob 工具庫</span>
-        <button onClick={() => setTheme(isDark ? "light" : "dark")} className="text-lg" aria-label="切換主題">
-          {isDark ? "🌞" : "🌙"}
-        </button>
       </div>
 
       {/* 主要版面 */}
@@ -850,19 +838,9 @@ const AppLauncherDemo: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-4 pt-4 text-xs text-slate-400 border-t border-slate-100/80 dark:border-slate-800">
+          <div className="mt-4 pt-4 text-xs text-slate-400 border-t border-slate-100/80">
             <div className="flex items-center justify-between">
               <span>© {new Date().getFullYear()} AIJob</span>
-              <button onClick={() => setTheme(isDark ? "light" : "dark")}
-                className="hidden md:inline-flex h-7 w-7 items-center justify-center rounded-full border text-xs hover:border-indigo-400">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isDark ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                  )}
-                </svg>
-              </button>
             </div>
           </div>
 
@@ -878,7 +856,7 @@ const AppLauncherDemo: React.FC = () => {
         {/* 主內容 */}
         <main className="flex-1 px-4 sm:px-6 py-6 md:py-8 md:ml-64">
           {currentPage === "home" ? (
-            <HomePage isDark={isDark} />
+            <HomePage />
           ) : (
             <>
               <header className="mb-6">
@@ -921,7 +899,7 @@ const AppLauncherDemo: React.FC = () => {
                         isDark ? "border-slate-700 bg-slate-900/80 text-slate-100 hover:border-indigo-400 hover:text-indigo-300"
                                : "border-slate-200 bg-white/80 text-slate-700 hover:border-indigo-300 hover:text-indigo-600"}`}>
                       <span className="inline-flex h-4 w-4 items-center justify-center overflow-hidden">
-                        {renderIcon(app.icon, app.name)}
+                        {renderIcon(app.icon, app.name, app.category)}
                       </span>
                       <span>{app.name}</span>
                     </button>
@@ -968,7 +946,7 @@ const AppLauncherDemo: React.FC = () => {
                 找不到符合條件的工具，試試其他關鍵字或切換分類。
               </div>
             ) : (
-              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+              <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                 {filteredApps.map((app) => {
                   const isFavoriteApp = favorites.includes(app.name);
                   const isCatalogApp = catalog.apps.some(x => x.name === app.name && x.href === app.href);
@@ -979,35 +957,35 @@ const AppLauncherDemo: React.FC = () => {
                       role="button"
                       tabIndex={0}
                       onClick={() => setSelectedApp(app)}
-                      className="group relative rounded-2xl p-px transition-transform duration-150 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-indigo-300/60"
+                      className="group relative rounded-2xl p-px transition-transform duration-150 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-indigo-300/60 sm:rounded-2xl"
                     >
-                      {/* hover 漸層光暈 */}
-                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-150 bg-gradient-to-br from-indigo-200/80 via-sky-200/60 to-transparent dark:from-indigo-500/40 dark:via-sky-500/30" />
+                      {/* hover 漸層光暈 - 只在桌面版顯示 */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-150 bg-gradient-to-br from-indigo-200/80 via-sky-200/60 to-transparent hidden sm:block" />
 
                       <div
-                        className={`relative rounded-[14px] p-4 flex flex-col items-center text-center shadow-sm backdrop-blur-sm ${
+                        className={`relative rounded-[14px] sm:rounded-[14px] p-3 sm:p-4 md:p-5 lg:p-4 xl:p-5 flex flex-col items-center text-center shadow-sm backdrop-blur-sm h-full min-h-[120px] sm:h-[280px] md:h-[300px] lg:h-[280px] xl:h-[300px] ${
                           isDark ? "bg-slate-900/90 border border-slate-800" : "bg-white/95 border border-slate-100"
                         }`}
                       >
-                        {/* 收藏 */}
+                        {/* 收藏 - 手機版隱藏，桌面版顯示 */}
                         <button
                           type="button"
                           onClick={(e) => { e.stopPropagation(); toggleFavorite(app); }}
-                          className={`absolute right-3 top-3 text-lg transition-transform ${
+                          className={`absolute right-2 top-2 sm:right-3 sm:top-3 text-base sm:text-lg transition-transform ${
                             isFavoriteApp ? "text-yellow-400 scale-110" : "text-slate-300 hover:text-slate-400"
-                          }`}
+                          } hidden sm:block`}
                           aria-label={isFavoriteApp ? "移除收藏" : "加入收藏"}
                           title={isFavoriteApp ? "移除收藏" : "加入收藏"}
                         >
                           {isFavoriteApp ? "★" : "☆"}
                         </button>
 
-                        {/* 刪除（只有 Admin 可以刪公開） */}
+                        {/* 刪除（只有 Admin 可以刪公開）- 手機版隱藏，桌面版顯示 */}
                         {isAdmin && isCatalogApp && (
                           <button
                             type="button"
                             onClick={(e) => { e.stopPropagation(); deleteApp(app); }}
-                            className="absolute left-3 top-3 text-sm text-rose-400 hover:text-rose-500"
+                            className="absolute left-2 top-2 sm:left-3 sm:top-3 text-xs sm:text-sm text-rose-400 hover:text-rose-500 hidden sm:block"
                             aria-label="刪除應用"
                             title="刪除應用"
                           >
@@ -1015,23 +993,28 @@ const AppLauncherDemo: React.FC = () => {
                           </button>
                         )}
 
-                        {/* 圖示 */}
-                        <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${isDark ? "bg-slate-800" : "bg-indigo-50"} overflow-hidden`}>
-                          {renderIcon(app.icon, app.name)}
+                        {/* 圖示 - 手機版更大，像 iPhone App 圖示 */}
+                        <div className={`mb-2 sm:mb-3 flex h-16 w-16 sm:h-12 sm:w-12 items-center justify-center rounded-2xl sm:rounded-xl ${isDark ? "bg-slate-800" : "bg-indigo-50"} overflow-hidden shadow-md sm:shadow-none relative`}>
+                          {renderIcon(app.icon, app.name, app.category)}
                         </div>
 
-                        <div className="font-semibold mb-1 text-sm">{app.name}</div>
-                        <div className="text-[11px] text-indigo-500 mb-2">{app.category}</div>
-                        <div className="text-sm text-slate-500 dark:text-slate-400 mb-3">{app.description}</div>
-                        {app.tags && (
-                          <div className="flex flex-wrap justify-center gap-1">
-                            {app.tags.map((tag) => (
-                              <span key={tag} className="rounded-full bg-sky-100 dark:bg-slate-800/80 px-2 py-0.5 text-[10px] text-black dark:text-slate-400">
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
+                        {/* 名稱 - 手機版只顯示名稱，桌面版顯示完整資訊 */}
+                        <div className="font-semibold text-xs sm:text-sm md:text-base mb-0 sm:mb-1 line-clamp-2 text-center leading-tight w-full px-1">{app.name}</div>
+                        
+                        {/* 分類、簡介、標籤 - 只在桌面版顯示 */}
+                        <div className="hidden sm:block w-full flex-1 flex flex-col">
+                          <div className="text-[11px] md:text-xs text-indigo-500 mb-2">{app.category}</div>
+                          <div className="text-xs md:text-sm text-slate-500 dark:text-slate-400 mb-3 line-clamp-3 flex-1">{app.description}</div>
+                          {app.tags && app.tags.length > 0 && (
+                            <div className="flex flex-wrap justify-center gap-1 mt-auto">
+                              {app.tags.slice(0, 3).map((tag) => (
+                                <span key={tag} className="rounded-full bg-sky-100 dark:bg-slate-800/80 px-2 py-0.5 text-[10px] md:text-xs text-black dark:text-slate-400">
+                                  #{tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   );
@@ -1046,25 +1029,73 @@ const AppLauncherDemo: React.FC = () => {
 
       {/* 詳情 Modal */}
       {selectedApp && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/30 backdrop-blur-sm">
-          <div className={`relative max-w-md w-full mx-4 rounded-2xl shadow-2xl p-6 ${isDark ? "bg-slate-900 border border-slate-700" : "bg-white"}`}>
-            <button type="button" onClick={() => setSelectedApp(null)} className="absolute right-4 top-4 text-slate-400 hover:text-slate-200 text-sm">✕</button>
-            <div className="flex flex-col items-center text-center">
-              <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${isDark ? "bg-slate-800" : "bg-indigo-50"} overflow-hidden`}>
-                {renderIcon(selectedApp.icon, selectedApp.name)}
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/30 backdrop-blur-sm p-4"
+          onClick={() => setSelectedApp(null)}
+        >
+          <div 
+            className={`relative max-w-md w-full rounded-2xl shadow-2xl p-6 ${isDark ? "bg-slate-900 border border-slate-700" : "bg-white"} max-h-[90vh] overflow-y-auto`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              type="button" 
+              onClick={() => setSelectedApp(null)} 
+              className="absolute right-4 top-4 text-slate-400 hover:text-slate-600 text-xl sm:text-sm w-8 h-8 sm:w-auto sm:h-auto flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors"
+            >
+              ✕
+            </button>
+            <div className="flex flex-col items-center text-center relative w-full">
+              {/* 收藏按鈕 - 手機版顯示在 Modal 內，放在左上角 */}
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); toggleFavorite(selectedApp); }}
+                className={`absolute left-4 top-4 sm:hidden text-2xl transition-transform z-10 ${
+                  favorites.includes(selectedApp.name) ? "text-yellow-400 scale-110" : "text-slate-300 hover:text-slate-400"
+                }`}
+                aria-label={favorites.includes(selectedApp.name) ? "移除收藏" : "加入收藏"}
+              >
+                {favorites.includes(selectedApp.name) ? "★" : "☆"}
+              </button>
+              
+              {/* 圖示 - 手機版更大 */}
+              <div className={`mb-4 sm:mb-3 flex h-20 w-20 sm:h-16 sm:w-16 items-center justify-center rounded-2xl sm:rounded-xl ${isDark ? "bg-slate-800" : "bg-indigo-50"} overflow-hidden shadow-lg relative`}>
+                {renderIcon(selectedApp.icon, selectedApp.name, selectedApp.category)}
               </div>
-              <h2 className="text-lg font-semibold mb-1">{selectedApp.name}</h2>
-              <div className="text-xs text-indigo-500 mb-3">{selectedApp.category}</div>
-              <p className="text-sm text-slate-600 dark:text-slate-300 mb-5">{selectedApp.description}</p>
+              
+              {/* 名稱 */}
+              <h2 className="text-xl sm:text-lg font-semibold mb-2 sm:mb-1 px-2">{selectedApp.name}</h2>
+              
+              {/* 分類 */}
+              <div className="text-sm sm:text-xs text-indigo-500 mb-4 sm:mb-3">{selectedApp.category}</div>
+              
+              {/* 簡介 */}
+              <p className="text-base sm:text-sm text-slate-600 dark:text-slate-300 mb-6 sm:mb-5 leading-relaxed px-2">{selectedApp.description}</p>
+              
+              {/* 標籤 - 手機版也顯示 */}
+              {selectedApp.tags && selectedApp.tags.length > 0 && (
+                <div className="flex flex-wrap justify-center gap-2 mb-6 sm:mb-5 w-full px-2">
+                  {selectedApp.tags.map((tag) => (
+                    <span key={tag} className="rounded-full bg-sky-100 dark:bg-slate-800/80 px-3 py-1 text-xs text-black dark:text-slate-400">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              
+              {/* 按鈕 */}
               <a
                 href={selectedApp.href}
                 target={selectedApp.href.startsWith("http") ? "_blank" : "_self"}
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-xl bg-indigo-600 text-white text-sm font-medium px-4 py-2.5 shadow hover:bg-indigo-700 transition-colors w-full mb-2"
+                className="inline-flex items-center justify-center rounded-xl bg-indigo-600 text-white text-base sm:text-sm font-medium px-6 sm:px-4 py-3 sm:py-2.5 shadow hover:bg-indigo-700 transition-colors w-full mb-3 sm:mb-2"
               >
                 立即前往工具
               </a>
-              <button type="button" onClick={() => setSelectedApp(null)} className="text-xs text-slate-400 hover:text-slate-200 mt-1">
+              <button 
+                type="button" 
+                onClick={() => setSelectedApp(null)} 
+                className="text-sm sm:text-xs text-slate-400 hover:text-slate-600 mt-1"
+              >
                 下次再說，先關閉
               </button>
             </div>
@@ -1237,14 +1268,79 @@ function getCategoryIcon(category: string) {
   }
 }
 
-/** ========= 圖示渲染：emoji / 路徑 / http(s) / data:image ========= */
-function renderIcon(icon: string, alt = "") {
+/** ========= 根據應用名稱生成 Fallback Icon ========= */
+function getFallbackIcon(name: string, category?: string): string {
+  const nameLower = name.toLowerCase();
+  
+  // 根據關鍵字匹配
+  if (nameLower.includes('reel') || nameLower.includes('短影音') || nameLower.includes('video')) return '🎬';
+  if (nameLower.includes('hr') || nameLower.includes('招募') || nameLower.includes('recruit')) return '💼';
+  if (nameLower.includes('chat') || nameLower.includes('gpt') || nameLower.includes('對話')) return '💬';
+  if (nameLower.includes('gemini')) return '🤖';
+  if (nameLower.includes('code') || nameLower.includes('程式') || nameLower.includes('開發')) return '💻';
+  if (nameLower.includes('deploy') || nameLower.includes('部署') || nameLower.includes('zeabur') || nameLower.includes('vercel') || nameLower.includes('netlify')) return '☁️';
+  if (nameLower.includes('n8n') || nameLower.includes('自動化') || nameLower.includes('workflow')) return '⚡';
+  if (nameLower.includes('stack') || nameLower.includes('sandbox') || nameLower.includes('github')) return '🛠️';
+  
+  // 根據分類匹配
+  if (category) {
+    const catLower = category.toLowerCase();
+    if (catLower.includes('員工') || catLower.includes('agent')) return '🤖';
+    if (catLower.includes('對話') || catLower.includes('chat')) return '💬';
+    if (catLower.includes('程式') || catLower.includes('code')) return '💻';
+    if (catLower.includes('部署') || catLower.includes('platform')) return '☁️';
+    if (catLower.includes('自動化') || catLower.includes('workflow')) return '⚡';
+  }
+  
+  // 預設 icon
+  return '🧩';
+}
+
+/** ========= 圖示渲染組件（支援錯誤處理） ========= */
+const IconRenderer: React.FC<{ icon: string; alt: string; category?: string }> = ({ icon, alt, category }) => {
+  const [imageError, setImageError] = React.useState(false);
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+  
   const isImage =
     typeof icon === "string" &&
     (icon.startsWith("/images/") || icon.startsWith("http") || icon.startsWith("data:image"));
-  if (isImage) return <img src={icon} alt={alt} className="h-full w-full object-contain" loading="lazy" />;
-  // 如果是emoji，嘗試轉換為icon或保持原樣
-  return <span className="text-2xl">{icon}</span>;
+  
+  const fallbackIcon = getFallbackIcon(alt, category);
+  
+  if (!isImage) {
+    // 如果是emoji，直接顯示
+    return <span className="text-2xl">{icon}</span>;
+  }
+  
+  // 如果圖片載入失敗，顯示 fallback
+  if (imageError) {
+    return <span className="text-2xl">{fallbackIcon}</span>;
+  }
+  
+  // 顯示圖片
+  return (
+    <>
+      <img 
+        src={icon} 
+        alt={alt} 
+        className={`h-full w-full object-contain ${imageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}
+        loading="lazy"
+        onLoad={() => setImageLoaded(true)}
+        onError={() => {
+          setImageError(true);
+          setImageLoaded(false);
+        }}
+      />
+      {!imageLoaded && !imageError && (
+        <span className="absolute text-2xl opacity-50">{fallbackIcon}</span>
+      )}
+    </>
+  );
+};
+
+/** ========= 圖示渲染：emoji / 路徑 / http(s) / data:image，失敗時使用 fallback ========= */
+function renderIcon(icon: string, alt = "", category?: string) {
+  return <IconRenderer icon={icon} alt={alt} category={category} />;
 }
 
 /** ========= 新增應用 Modal（Admin 專用） ========= */

@@ -4,15 +4,16 @@
     "AI對話",
     "AI寫程式工具",
     "部署平台",
-    "AI 自動化(workflow)"
+    "AI 自動化",
+    "創建AI 分身"
   ],
   "apps": [
     {
-      "name": "ReelMind短影音智能體",
-      "icon": "🎬",
-      "description": "輸入需求即可自動生成帳號定位、腳本選題與短影音腳本。",
+      "name": "短影音智能體",
       "href": "https://reelmind.aijob.com.tw",
+      "icon": "https://www.google.com/s2/favicons?domain=reelmind.aijob.com.tw&sz=128",
       "category": "AI員工",
+      "description": "輸入需求即可自動生成帳號定位、腳本選題與短影音腳本。",
       "tags": [
         "短影音",
         "內容策略",
@@ -20,11 +21,11 @@
       ]
     },
     {
-      "name": "HR招募智能體",
-      "icon": "💼",
-      "description": "快速生成職缺描述、面試問題與人才畫像分析。",
+      "name": "AI招募",
       "href": "https://step1nerecruit.zeabur.app/",
+      "icon": "https://www.google.com/s2/favicons?domain=step1nerecruit.zeabur.app&sz=128",
       "category": "AI員工",
+      "description": "快速生成職缺描述、面試問題與人才畫像分析。",
       "tags": [
         "HR",
         "招募",
@@ -45,10 +46,10 @@
     },
     {
       "name": "Gemini",
-      "icon": "/images/gemini.png",
-      "description": "由 Google 推出的多模態 AI 對話系統。",
       "href": "https://gemini.google.com/",
+      "icon": "https://www.google.com/s2/favicons?domain=gemini.google.com&sz=128",
       "category": "AI對話",
+      "description": "由 Google 推出的多模態 AI 對話系統。",
       "tags": [
         "多模態",
         "圖片",
@@ -142,7 +143,7 @@
       "name": "n8n",
       "href": "https://n8n.io/",
       "icon": "https://www.google.com/s2/favicons?domain=n8n.io&sz=128",
-      "category": "AI 自動化(workflow)",
+      "category": "AI 自動化",
       "description": "n8n 是一款強大且可視化的自動化工具，讓你透過拖拉節點快速建立工作流程。可串接 API、資料庫、第三方服務，無需工程背景就能打造專屬自動化。",
       "tags": [
         "自動化",
@@ -154,12 +155,77 @@
       "name": "n8ncoder",
       "href": "https://www.n8ncoder.com/?via=AIJobschool",
       "icon": "https://www.google.com/s2/favicons?domain=affiliate.n8ncoder.com&sz=128",
-      "category": "AI 自動化(workflow)",
+      "category": "AI 自動化",
       "description": "n8nCoder 是一款能幫你「寫 n8n 工作流」的 AI 助理。\n它能依照你的指令自動生成流程、修正節點設定、偵錯錯誤、優化邏輯，甚至提供成千上萬的範本。無需手動寫 API，也不需程式語言基礎，就能快速打造專屬自動化工作流。",
       "tags": [
         "AI工作流",
         "自動化助手",
         "AI 工作流"
+      ]
+    },
+    {
+      "name": "Cursor",
+      "href": "https://cursor.com/",
+      "icon": "https://www.google.com/s2/favicons?domain=cursor.com&sz=128",
+      "category": "AI寫程式工具",
+      "description": "Cursor 是一款具備 AI 協作能力的程式編輯器，可自動生成、重構並修正程式碼。",
+      "tags": [
+        "AI寫程式",
+        "AI編程",
+        "新手友善",
+        "提升效率"
+      ]
+    },
+    {
+      "name": "Claude",
+      "href": "https://claude.ai/",
+      "icon": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128",
+      "category": "AI對話",
+      "description": "這個 AI 員工能自動理解你的需求並協助執行指定任務，減少大量重複工作。透過智能決策與流程支援，提升你的工作效率與完成品質。",
+      "tags": [
+        "AI助手",
+        "生產力工具",
+        "任務協作",
+        "高效辦公"
+      ]
+    },
+    {
+      "name": "Heygen",
+      "href": "https://www.heygen.com/",
+      "icon": "https://www.google.com/s2/favicons?domain=www.heygen.com&sz=128",
+      "category": "創建AI 分身",
+      "description": "Heygen 能快速生成高品質 AI 分身影片，支援口型同步、語音克隆與多語言呈現。\n適合行銷、教育、內容創作者用於快速製作專業級影片。",
+      "tags": [
+        "AI分身",
+        "數位分身",
+        "影片生成",
+        "多語言配音"
+      ]
+    },
+    {
+      "name": "Elai",
+      "href": "https://elai.io/",
+      "icon": "https://www.google.com/s2/favicons?domain=elai.io&sz=128",
+      "category": "創建AI 分身",
+      "description": "Elai 能自動生成 AI 分身講解影片，支援文字轉影片、多語音多角色呈現。\n適合企業、教育與內容創作者快速產出高品質影片教材與說明內容。",
+      "tags": [
+        "AI分身",
+        "影片生成",
+        "自動化影片",
+        "教育影片"
+      ]
+    },
+    {
+      "name": "Assemblyai",
+      "href": "https://www.assemblyai.com/",
+      "icon": "https://www.google.com/s2/favicons?domain=www.assemblyai.com&sz=128",
+      "category": "AI 自動化",
+      "description": "AssemblyAI 提供高精度語音辨識、內容分析與音訊理解能力，可將語音自動轉為可用的文字與洞察。",
+      "tags": [
+        "語音辨識",
+        "逐字稿生成",
+        "音訊分析",
+        "自動摘要"
       ]
     }
   ]
