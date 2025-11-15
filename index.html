@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AIJob 自動化學院 - AI 工具庫與自動化教學</title>
+    <meta name="description" content="AIJob 自動化學院專注於 AI 與自動化技術教學，提供 AI 工具庫、n8n 自動化課程、LINE 社群、Discord 社群等資源，從零打造你的工作流效率。" />
+    <meta name="keywords" content="AI工具,自動化,AI教學,n8n,LINE自動化,AI員工,AI對話,AIJob,自動化學院" />
+    <meta name="author" content="AIJob 自動化學院" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aijobaitools.zeabur.app/" />
+    <meta property="og:title" content="AIJob 自動化學院 - AI 工具庫與自動化教學" />
+    <meta property="og:description" content="專注於 AI 與自動化技術教學，從零打造你的工作流效率" />
+    <meta property="og:image" content="https://static.wixstatic.com/media/9705bb_dd62dc9b5ff6496a9a9560ca516f9851~mv2.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://aijobaitools.zeabur.app/" />
+    <meta property="twitter:title" content="AIJob 自動化學院 - AI 工具庫與自動化教學" />
+    <meta property="twitter:description" content="專注於 AI 與自動化技術教學，從零打造你的工作流效率" />
+    <meta property="twitter:image" content="https://static.wixstatic.com/media/9705bb_dd62dc9b5ff6496a9a9560ca516f9851~mv2.png" />
+    
+    <!-- Geo / Location (增強版) -->
+    <meta name="geo.region" content="TW-TPE" />
+    <meta name="geo.placename" content="Taipei, Taiwan" />
+    <meta name="geo.position" content="25.0330;121.5654" />
+    <meta name="ICBM" content="25.0330, 121.5654" />
+    <meta name="DC.title" content="AIJob 自動化學院" />
+    <meta name="DC.creator" content="AIJob 自動化學院" />
+    <meta name="DC.subject" content="AI工具,自動化,AI教學" />
+    <meta name="DC.description" content="AIJob 自動化學院專注於 AI 與自動化技術教學" />
+    <meta name="DC.publisher" content="AIJob 自動化學院" />
+    <meta name="DC.contributor" content="AIJob 自動化學院" />
+    <meta name="DC.date" content="2025-01-15" />
+    <meta name="DC.type" content="Website" />
+    <meta name="DC.format" content="text/html" />
+    <meta name="DC.identifier" content="https://aijobaitools.zeabur.app/" />
+    <meta name="DC.language" content="zh-TW" />
+    <meta name="DC.coverage" content="Taiwan" />
+    <meta name="DC.rights" content="© 2025 AIJob 自動化學院" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aijobaitools.zeabur.app/" />
+    
+    <!-- 語言標籤 -->
+    <meta http-equiv="content-language" content="zh-TW" />
+    
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    
+    <!-- 結構化資料預設（會被 React 組件動態更新） -->
+    <script type="application/ld+json" id="structured-data">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "AIJob 自動化學院",
+      "url": "https://aijobaitools.zeabur.app",
+      "logo": "https://static.wixstatic.com/media/9705bb_dd62dc9b5ff6496a9a9560ca516f9851~mv2.png",
+      "description": "AIJob 自動化學院專注於 AI 與自動化技術教學，提供 AI 工具庫、n8n 自動化課程、LINE 社群、Discord 社群等資源。",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "TW",
+        "addressRegion": "台北市",
+        "addressLocality": "內湖區",
+        "streetAddress": "康寧路三段之7號3樓"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+886-02-6605-7111",
+        "contactType": "customer service",
+        "email": "aiagentg888@gmail.com",
+        "areaServed": "TW",
+        "availableLanguage": ["zh-Hant", "zh-TW"]
+      },
+      "sameAs": [
+        "https://www.aijob.com.tw/",
+        "https://www.instagram.com/aijobschool/",
+        "https://youtube.com/@aijobschool",
+        "https://discord.gg/Dzm2P7rHyg"
+      ]
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/9705bb_dd62dc9b5ff6496a9a9560ca516f9851~mv2.png" />
+
+    <!-- 加入 Tailwind CDN（重點） -->
+    <script src="https://cdn.tailwindcss.com" onerror="console.error('Tailwind CDN 載入失敗')"></script>
+    <script>
+      // 等待 Tailwind 載入完成後再設定配置
+      (function() {
+        function initTailwind() {
+          if (typeof tailwind !== 'undefined') {
+            // 如果之後要客製顏色或字體可以在這裡改
+            tailwind.config = {
+              theme: {
+                extend: {},
+              },
+            };
+          } else {
+            // 如果 Tailwind 還沒載入，等待一下再試
+            setTimeout(initTailwind, 100);
+          }
+        }
+        // 立即嘗試，如果失敗則等待
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initTailwind);
+        } else {
+          initTailwind();
+        }
+      })();
+    </script>
+
+    <!-- 這一段可以保留，確保字型 OK -->
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

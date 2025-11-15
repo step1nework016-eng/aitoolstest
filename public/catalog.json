@@ -1,0 +1,166 @@
+{
+  "categories": [
+    "AI員工",
+    "AI對話",
+    "AI寫程式工具",
+    "部署平台",
+    "AI 自動化(workflow)"
+  ],
+  "apps": [
+    {
+      "name": "ReelMind短影音智能體",
+      "icon": "🎬",
+      "description": "輸入需求即可自動生成帳號定位、腳本選題與短影音腳本。",
+      "href": "https://reelmind.aijob.com.tw",
+      "category": "AI員工",
+      "tags": [
+        "短影音",
+        "內容策略",
+        "影片腳本"
+      ]
+    },
+    {
+      "name": "HR招募智能體",
+      "icon": "💼",
+      "description": "快速生成職缺描述、面試問題與人才畫像分析。",
+      "href": "https://step1nerecruit.zeabur.app/",
+      "category": "AI員工",
+      "tags": [
+        "HR",
+        "招募",
+        "面試題目"
+      ]
+    },
+    {
+      "name": "GPT",
+      "icon": "/images/ChatGPT.png",
+      "description": "使用 OpenAI GPT 系列模型進行智能對話。",
+      "href": "https://chat.openai.com/",
+      "category": "AI對話",
+      "tags": [
+        "通用",
+        "英文",
+        "程式"
+      ]
+    },
+    {
+      "name": "Gemini",
+      "icon": "/images/gemini.png",
+      "description": "由 Google 推出的多模態 AI 對話系統。",
+      "href": "https://gemini.google.com/",
+      "category": "AI對話",
+      "tags": [
+        "多模態",
+        "圖片",
+        "影片"
+      ]
+    },
+    {
+      "name": "Manus",
+      "href": "https://manus.im/invitation/TOWQQUHBWED1",
+      "icon": "https://www.google.com/s2/favicons?domain=manus.im&sz=128",
+      "category": "AI對話",
+      "description": "高效能中文 AI 對話系統，支援多場景應用。",
+      "tags": [
+        "中文",
+        "效率",
+        "本地化"
+      ]
+    },
+    {
+      "name": "StackBlitz",
+      "href": "https://stackblitz.com/",
+      "icon": "https://www.google.com/s2/favicons?domain=stackblitz.com&sz=128",
+      "category": "AI寫程式工具",
+      "description": "雲端即開即寫的前端開發環境，支援 Vite/Next 等。",
+      "tags": [
+        "前端",
+        "線上IDE",
+        "快速實驗"
+      ]
+    },
+    {
+      "name": "Codesandbox",
+      "href": "https://codesandbox.io/",
+      "icon": "https://www.google.com/s2/favicons?domain=codesandbox.io&sz=128",
+      "category": "AI寫程式工具",
+      "description": "線上沙盒環境，快速建立 React/Vue 專案範本。",
+      "tags": [
+        "沙盒",
+        "模板",
+        "原型"
+      ]
+    },
+    {
+      "name": "GitHub Codespaces",
+      "href": "https://github.com/features/codespaces",
+      "icon": "https://www.google.com/s2/favicons?domain=github.com&sz=128",
+      "category": "AI寫程式工具",
+      "description": "雲端 VS Code 開發環境，整合 GitHub 專案。",
+      "tags": [
+        "雲端IDE",
+        "GitHub"
+      ]
+    },
+    {
+      "name": "Zeabur",
+      "href": "https://zeabur.com/referral?referralCode=aiagentg888",
+      "icon": "https://www.google.com/s2/favicons?domain=zeabur.com&sz=128",
+      "category": "部署平台",
+      "description": "一鍵自動化部署，支援 Node/Static/DB 等服務。",
+      "tags": [
+        "Serverless",
+        "自動部署",
+        "Logs"
+      ]
+    },
+    {
+      "name": "Vercel",
+      "href": "https://vercel.com/",
+      "icon": "https://www.google.com/s2/favicons?domain=vercel.com&sz=128",
+      "category": "部署平台",
+      "description": "前端友善的 Serverless 平台，Next.js 官方好夥伴。",
+      "tags": [
+        "Serverless",
+        "Edge",
+        "Next.js"
+      ]
+    },
+    {
+      "name": "Netlify",
+      "href": "https://www.netlify.com/",
+      "icon": "https://www.google.com/s2/favicons?domain=www.netlify.com&sz=128",
+      "category": "部署平台",
+      "description": "靜態網站與函式部署，CI/CD 內建。",
+      "tags": [
+        "靜態",
+        "Functions",
+        "CI/CD"
+      ]
+    },
+    {
+      "name": "n8n",
+      "href": "https://n8n.io/",
+      "icon": "https://www.google.com/s2/favicons?domain=n8n.io&sz=128",
+      "category": "AI 自動化(workflow)",
+      "description": "n8n 是一款強大且可視化的自動化工具，讓你透過拖拉節點快速建立工作流程。可串接 API、資料庫、第三方服務，無需工程背景就能打造專屬自動化。",
+      "tags": [
+        "自動化",
+        "API 自動化LLM 工作流",
+        "AI Agent"
+      ]
+    },
+    {
+      "name": "n8ncoder",
+      "href": "https://www.n8ncoder.com/?via=AIJobschool",
+      "icon": "https://www.google.com/s2/favicons?domain=affiliate.n8ncoder.com&sz=128",
+      "category": "AI 自動化(workflow)",
+      "description": "n8nCoder 是一款能幫你「寫 n8n 工作流」的 AI 助理。\n它能依照你的指令自動生成流程、修正節點設定、偵錯錯誤、優化邏輯，甚至提供成千上萬的範本。無需手動寫 API，也不需程式語言基礎，就能快速打造專屬自動化工作流。",
+      "tags": [
+        "AI工作流",
+        "自動化助手",
+        "AI 工作流"
+      ]
+    }
+  ]
+}
